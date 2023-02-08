@@ -10,3 +10,10 @@ Optional -> Find the closest people from Z2J to arrange a coffee or coding toget
 
 Initial backend stack:
 Java 17, JDBC, PostgreSQL database, connecting to the frontend via REST API.
+
+Initial plan/task list:
+
+    1. Create database
+    2. Create all model classes
+    3. Connect db to the project using JDBC
+    4. Map objects from java to records in db
