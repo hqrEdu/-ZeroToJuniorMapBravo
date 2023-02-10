@@ -13,7 +13,8 @@ Java 17, JDBC, PostgreSQL database, connecting to the frontend via REST API.
 
 Initial plan/task list:
 
-    1. Create database
-    2. Create all model classes
-    3. Connect db to the project using JDBC
-    4. Map objects from java to records in db
+    1. Create database 
+    2. Init project
+    3. Create model class
+    4. Connect db to the project
+    5. Map objects from java to records in db
