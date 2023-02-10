@@ -1,10 +1,20 @@
-# ZeroToJuniorMapBravo Backend
+# ZeroToJuniorMapBravo
 
-Celem projektu jest stworzenie prostej aplikacji, pokazującej na mapie, gdzie mieszkają uczestnicy Z2J.
+The aim of the project is to create a simple application that shows on the map where Z2J participants live.
 
-Input: Formularz -> nick na discordzie, miejsce zamieszkania (wstępnie - miejscowość, kod pocztowy, państwo).
-Output: Mapa z kropkami reprezentującymi, gdzie mieszkają uczestnicy Z2J.
-Opcjonalnie -> Znajdź najbliższe osoby z Z2J, żeby umówić się na kawę albo wspólne kodowanie.
+![Where are you from?](https://user-images.githubusercontent.com/36161561/217615692-4bbf41a1-3e2e-4ee7-94bd-da205ec4b340.png)
 
-Wstępny stack dla backendu:
-Java 17, Hibernate, baza PostgreSQL, łączenie z frontendem przez REST API.
+Input: Form -> discord nickname, place of residence (initially - city, zip code, country).
+Output: Map with dots representing where Z2J participants live.
+Optional -> Find the closest people from Z2J to arrange a coffee or coding together.
+
+Initial backend stack:
+Java 17, JDBC, PostgreSQL database, connecting to the frontend via REST API.
+
+Initial plan/task list:
+
+    1. Create database 
+    2. Init project
+    3. Create model class
+    4. Connect db to the project
+    5. Map objects from java to records in db
