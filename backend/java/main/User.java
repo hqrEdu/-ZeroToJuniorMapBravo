@@ -1,8 +1,8 @@
 package main;
-public class DBRecordModel {
+public class User {
     private final String nickname, city, zipCode, country;
 
-    public DBRecordModel(String nickname, String city, String zipCode, String country) {
+    public User(String nickname, String city, String zipCode, String country) {
         this.nickname = nickname;
         this.city = city;
         this.zipCode = zipCode;

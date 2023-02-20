@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 
-public class DBRecordModelTest {
+public class UserTest {
     String testName = "Lamer";
     String testCity = "Paniska";
     String testZipCode = "00-949";
     String testCountry = "Poland";
-    private final DBRecordModel testModel = new DBRecordModel(testName, testCity, testZipCode, testCountry);
+    private final User testModel = new User(testName, testCity, testZipCode, testCountry);
 
     @Test
     public void testNick(){
@@ -19,14 +19,14 @@ public class DBRecordModelTest {
     }
 
     @Test
-    public void test2(){
+    public void TestCity(){
         assertEquals(
                 testCity,
                 testModel.getCity());
     }
 
     @Test
-    public void test3(){
+    public void testCode(){
         assertEquals(
                 testZipCode,
                 testModel.getZipCode());
