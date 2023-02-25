@@ -1,11 +1,11 @@
 
-CREATE SCHEMA IF NOT EXISTS "mapa-bravo"
+CREATE SCHEMA IF NOT EXISTS "map"
 AUTHORIZATION postgres;
 
-COMMENT ON SCHEMA "mapa-bravo"
+COMMENT ON SCHEMA "map"
     IS 'schema used for the project "mapa-z2j"';
 	
-	CREATE TABLE IF NOT EXISTS "mapa-bravo"."user"
+	CREATE TABLE IF NOT EXISTS "map"."user"
 (
     id bigint NOT NULL,
     nickname character(100) NOT NULL,
@@ -13,12 +13,10 @@ COMMENT ON SCHEMA "mapa-bravo"
     country character(100) NOT NULL,
     "zipCode" character(100) NOT NULL,
     CONSTRAINT user_pkey PRIMARY KEY (id)
-)
+);
 
-TABLESPACE pg_default;
-
-ALTER TABLE IF EXISTS "mapa-bravo"."user"
+ALTER TABLE IF EXISTS "map"."user"
     OWNER to postgres;
 
-COMMENT ON TABLE "mapa-bravo"."user"
+COMMENT ON TABLE "map"."user"
     IS 'user table';

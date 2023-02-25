@@ -15,7 +15,7 @@ How to check if everything works?
 
 1. Open pg admin
 2. Connect to db
-3. Open schema "mapa-bravo"
+3. Open schema "map"
 4. check table "user" if exist
 
 B. Run using console
