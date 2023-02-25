@@ -28,7 +28,7 @@ public class DatabaseConnection {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url, user, password);
-            System.out.println("Connected to the PostgresSQL server successfully.");
+            System.out.println("Connected to the mapa-bravo database successfully.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
