@@ -1,10 +1,11 @@
-import configuration.DatabaseConnection;
+import service.UserService;
 
 public class MapBravoApp {
 
     public static void main(String[] args) {
 
-        DatabaseConnection connection = new DatabaseConnection();
-        connection.connection();
+        UserService userService = new UserService();
+        userService.addUser();
+
     }
 }
