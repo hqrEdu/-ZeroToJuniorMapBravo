@@ -7,27 +7,24 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseConnection {
-    private static final String url = "jdbc:postgresql://localhost:5432/mapa-bravo";
-    private static final String user = "postgres";
-    private static final String password = "pass123";
 
-    public void connection() {
+    private static final String URL = "jdbc:postgresql://localhost:5432/mapa-bravo";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "pass123";
+
+
+    public Statement connection() {
         Connection connection = createConnection();
-        if(connection != null) {
-            Statement statement = createStatement(connection);
-            try {
-                connection.close();
-                statement.close();
-            } catch (SQLException e) {
-                System.out.println(e.getMessage());
-            }
+        if (connection != null) {
+            return createStatement(connection);
         }
+        return null;
     }
 
     private Connection createConnection() {
         Connection conn = null;
         try {
-            conn = DriverManager.getConnection(url, user, password);
+            conn = DriverManager.getConnection(URL, USER, PASSWORD);
             System.out.println("Connected to the mapa-bravo database successfully.");
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -37,7 +34,7 @@ public class DatabaseConnection {
 
     private Statement createStatement(Connection connection) {
         Statement statement = null;
-        try{
+        try {
             statement = connection.createStatement();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
