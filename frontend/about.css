@@ -1,18 +1,32 @@
 html {
-    min-height: 100%;
+    max-height: 100%;
     overflow-y: scroll;
     background-repeat: no-repeat;
     background-size: cover;
 }
 body {
-    min-height: 100%;
+    max-height: 100%;
+    display: grid;
 }
 
 main {
     font-family: 'Roboto Slab', serif;
     background-color: #85cedc;
     color: white;
-    background-image: url("/Users/lukaszwieczorek/ZeroToJuniorMapBravo/frontend");
+    background-image: url("popart-style-community-of-people-who-meet-sometime-for-coffee-with-dark-background-.png");
+    background-repeat: no-repeat;
+    background-size: 100% 85%;
+    padding: 20px;
+    padding-top: 100px;
+    padding-bottom: 200px;
+}
+
+.Poland-img{
+    position: absolute;
+    right: 20px;
+    max-width: 30%;
+    max-heigt: 30%;
+    background-color: transparent;
 }
 
 .navbar, .navbar-brand {
@@ -43,5 +57,13 @@ nav.navbar {
 button.btn.btn-lg{
     --bs-btn-color: white;
     --bs-btn-bg:#85cedc;
+}
 
+.project-description{
+    max-width: 50%;
+    padding-top: 20px;
+
+}
+h1{
+    font-weight: bold;
 }
