@@ -17,7 +17,7 @@ public class UserService {
             Statement statement = databaseConnection.connection();
             statement.execute(addUserQuery);
             statement.close();
-            System.out.println("Model.User has been correctly added.");
+            System.out.println("User has been correctly added.");
         } catch (SQLException e) {
             System.out.println("Something went wrong.");
         }
@@ -40,7 +40,7 @@ public class UserService {
             }
 
         } catch (SQLException e) {
-            System.err.println("Błąd połączenia z bazą danych: " + e.getMessage());
+            System.err.println("Database connection error: " + e.getMessage());
         }
         return users;
     }
