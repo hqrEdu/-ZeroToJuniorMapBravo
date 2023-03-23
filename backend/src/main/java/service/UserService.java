@@ -1,5 +1,6 @@
 package service;
 
+import model.User;
 import configuration.DatabaseConnection;
 
 import java.sql.*;
@@ -16,7 +17,7 @@ public class UserService {
             Statement statement = databaseConnection.connection();
             statement.execute(addUserQuery);
             statement.close();
-            System.out.println("service.User has been correctly added.");
+            System.out.println("Model.User has been correctly added.");
         } catch (SQLException e) {
             System.out.println("Something went wrong.");
         }
@@ -29,17 +30,14 @@ public class UserService {
         try {
             Statement statement = databaseConnection.connection();
             ResultSet resultSet = statement.executeQuery(queryGetAll);
-
             while (resultSet.next()) {
                 String nickname = resultSet.getString(2);
                 String city = resultSet.getString(3);
                 String zipCode = resultSet.getString(4);
                 String country = resultSet.getString(5);
-
                 User user = new User(nickname, city, zipCode, country);
                 users.add(user);
             }
-
 
         } catch (SQLException e) {
             System.err.println("Błąd połączenia z bazą danych: " + e.getMessage());
