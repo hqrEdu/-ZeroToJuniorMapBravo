@@ -1,0 +1,165 @@
+html {
+    min-height: 100%;
+}
+
+/*HEADER SECTION*/
+/*Navbar*/
+nav.navbar.navbar-expand-lg{
+    height: 100px;
+    width: 100%;
+    z-index:10;
+}
+
+.navbar, .navbar-brand {
+    background-color: #14223D;
+    font-family: 'Roboto Slab', serif;
+}
+
+a.navbar-brand, .link-zerotojunior {
+    color:white;
+}
+
+a.nav-link.active {
+    --bs-navbar-active-color: white;
+}
+
+.link-zerotojunior:hover {
+    color: #FCA310;
+}
+
+a.nav-link.active:hover, button.btn.btn-lg:hover{
+    color: #FCA310;
+    text-decoration: underline wavy red;
+}
+
+nav.navbar {
+    --bs-navbar-color: white;
+}
+
+/*buttons*/
+button.btn.btn-lg{
+    --bs-btn-color: white;
+    --bs-btn-bg:#FCA310;
+}
+
+/*MAIN SECTION*/
+main {
+    font-family: 'Roboto Slab', serif;
+}
+
+.container-in-first-cont, .container-in-second-cont, .container-in-third-con {
+    padding: 50px 0 100px 100px;
+}
+
+/*first container*/
+.first-container{
+    background-image: url("img_1.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    transform: scale(1.0);
+    transition-duration: 0.3s;
+    color: white;
+}
+
+.first-container:hover {
+    transform: scale(1.1);
+    z-index: 0;
+    transition-timing-function: linear;
+}
+
+.container-in-first-cont{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/*second container*/
+.second-container {
+    max-heigt: 90%;
+    max-width: 100%;
+}
+
+.container-in-second-cont{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+/*third container*/
+.third-container{
+    background-color: #14223D;
+    color: white;
+}
+
+/*headings*/
+.title {
+    padding: 20px 0px 50px 100px;
+}
+
+.our-story, .opinions {
+    padding: 50px 0px 50px 100px;
+}
+
+/*descriptions*/
+.about-description, .our-story-description{
+    max-width: 50%;
+}
+
+/*images*/
+.poland-img{
+    border-radius: 100%;
+    max-height: 300px;
+    max-width: 300px;
+    position: relative;
+    left: 150px;
+    bottom: 40px;
+}
+
+.computer_cables{
+    position: relative;
+    left: 90px;
+    bottom: 140px;
+}
+/*carousel*/
+.container-fluid {
+    padding: 7% 15%;
+}
+.testimonial-text{
+    position: relative;
+    left: 20%;
+    font-size: 3rem;
+    line-height: 1.5;
+    max-width: 50%;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.testimonial-img {
+    position: relative;
+    left: 40%;
+    width: 10%;
+    border-radius: 100%;
+    margin: 20px;
+}
+.signature{
+    position: relative;
+    left: 40%;
+}
+
+#footer {
+    margin: 50px auto;
+}
+
+.footer-icon{
+    position: relative;
+    left: 45%;
+    color: grey;
+    margin-right: 20px;
+}
+.footer-signature {
+    text-align: center;
+    color: grey;
+    margin-right: 20px;
+    margin-top: 20px;
+}

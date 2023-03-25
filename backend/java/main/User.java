@@ -1,5 +1,5 @@
+package main;
 public class User {
-
     private final String nickname, city, zipCode, country;
 
     public User(String nickname, String city, String zipCode, String country) {
