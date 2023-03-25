@@ -1,30 +1,19 @@
-html {
-    min-height: 100%;
-    overflow-y: scroll;
-    background-repeat: no-repeat;
-    background-size: cover;
-}
-body {
-    min-height: 100%;
-
-}
-
-main {
-    font-family: 'Roboto Slab', serif;
-    display: grid;
-    grid-template-columns: 55% 45%;
-    background-color: #85cedc;
-    color: white;
+/*HEADER SECTION*/
+/*Navbar*/
+nav.navbar.navbar-expand-lg{
+    height: 100px;
+    width: 100%;
+    z-index:10;
 }
 
 .navbar, .navbar-brand {
-    background-color: #fad259;
+    background-color: #14223D;
     font-family: 'Roboto Slab', serif;
-
 }
 
 a.navbar-brand, .link-zerotojunior {
     color:white;
+
 }
 
 a.nav-link.active {
@@ -32,53 +21,117 @@ a.nav-link.active {
 }
 
 .link-zerotojunior:hover {
-    color: #85cedc;
+    color: #FCA310;
 }
+
 a.nav-link.active:hover, button.btn.btn-lg:hover{
-    color: #85cedc;
+    color: #FCA310;
+    text-decoration: underline wavy red;
 }
 
 nav.navbar {
     --bs-navbar-color: white;
 }
 
+/*buttons*/
 button.btn.btn-lg{
     --bs-btn-color: white;
-    --bs-btn-bg:#85cedc;
-
+    --bs-btn-bg:#FCA310;
 }
 
-
 button.btn.log-in.btn-lg {
-    --bs-btn-bg:#fad259;
+    --bs-btn-bg:#FCA310;
     position: relative;
     top: 50%;
-    margin-left: 20px;
+    margin-left: 5%;
 }
 
 button.btn.log-in.btn-lg:hover {
-    color: #85cedc;
-    background-color:#fad259;
+    color: #FCA310;
+    background-color:#14223D;
 }
 
-#title {
-    /*display: block;*/
+/*MAIN SECTION*/
+main {
+    font-family: 'Roboto Slab', serif;
+    background-color: white;
+}
+
+/*first container*/
+.first-container{
+    background-image: url("images/people.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    padding: 20% 0 20% 0;
+    transform: scale(1.2);
+    transition-duration: 0.8s;
+    color: white;
+}
+
+.title {
     position: relative;
     top: 50%;
-    padding-left: 20px;
+    padding-left: 10%;
 }
 
-.pic-world-map{
-    width: 100%;
-    height: 100%;
-}
+/*second container*/
 
-footer{
-    text-align: right;
-    padding-top: 50px;
-    background-color: #85cedc;
+.second-container{
+    background-color: #14223D;
+    max-width: 100%;
+    max-height: 100%}
+
+.title-subtitle-section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     color: white;
-    font-size: 12px;
+    padding-top: 10%;
+}
+
+.subtitle{
+    padding: 2%;
+    max-width: 50%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-in-second-cont{
+    display: flex;
+    flex-direction: row;
+    padding: 5%;
+}
+
+.card{
+    margin: 50px 100px 0 100px;
+}
+
+img.card-img-top{
+    max-width: 60%;
+    max-height: 60%;
+    margin-top: 5%;
+    margin-left: 20%;
+}
+
+
+/*Footer*/
+#footer {
+    margin: 50px auto;
+}
+
+.footer-icon{
+    position: relative;
+    left: 45%;
+    color: grey;
+    margin-right: 20px;
+}
+.footer-signature {
+    text-align: center;
+    color: grey;
+    margin-right: 20px;
+    margin-top: 20px;
 }
 
 
