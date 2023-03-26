@@ -9,6 +9,8 @@
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="form.css">
     <title>Start</title>
+    <script src="form.js" async></script>
+
 </head>
 
 <body>
@@ -27,15 +29,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/frontend/About/about.html">O projekcie</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/frontend/contact.html">Kontakt</a>
-                    </li>
                 </ul>
             </div>
         </div>
     </nav>
     <h1 class="text-center pt-5">Witaj w społeczności Zero2Junior!</h1>
-    <form>
+    <form id="form">
         <div class="container my-5">
             <div class="row justify-content-md-center">
                 <div class="col col-lg-5">
@@ -44,14 +43,14 @@
             </div>
             <div class="form-row d-flex justify-content-center">
                 <div class="col-lg-4">
-                    <label for="">Podaj swoje imię:</label>
-                    <input type="text" class="form-control" placeholder="Imię" required>
+                    <label for="fname">Podaj swoje imię:</label>
+                    <input type="text" class="form-control" id="fname" placeholder="Imię" required>
                 </div>
             </div>
             <div class="form-row d-flex justify-content-center">
                 <div class="col-lg-4">
-                    <label for="">Podaj swój nick na Discordzie:</label>
-                    <input type="text" class="form-control" placeholder="Nick" required>
+                    <label for="nick">Podaj swój nick na Discordzie:</label>
+                    <input type="text" class="form-control" id="nick" placeholder="Nick" required>
                 </div>
             </div>
             <div class="row justify-content-md-center">
@@ -61,20 +60,20 @@
             </div>
             <div class="form-row d-flex justify-content-center">
                 <div class="col-lg-4">
-                    <label for="">Podaj nazwę kraju:</label>
-                    <input type="text" class="form-control" placeholder="Nazwa kraju" required>
+                    <label for="country">Podaj nazwę kraju:</label>
+                    <input type="text" class="form-control" id="country" placeholder="Nazwa kraju" required>
                 </div>
             </div>
             <div class="form-row d-flex justify-content-center">
                 <div class="col-lg-4">
-                    <label for="">Podaj nazwę miejscowości:</label>
-                    <input type="text" class="form-control" placeholder="Miasto" required>
+                    <label for="city">Podaj nazwę miejscowości:</label>
+                    <input type="text" class="form-control" id="city" placeholder="Miasto" required>
                 </div>
             </div>
             <div class="form-row d-flex justify-content-center">
                 <div class="col-lg-4">
                     <label for="zip_code">Podaj kod pocztowy:</label>
-                    <input type="number" class="form-control" placeholder="xx-xxx" id="zip_code" required>
+                    <input type="text" class="form-control" id="zip_code" placeholder="xx-xxx" min="0" required>
                 </div>
             </div>
             <div class="form-row d-flex justify-content-center mt-4">
@@ -84,17 +83,14 @@
                 </div>
             </div>
             <div class="d-flex justify-content-center">
-                <input type="submit" value="Zapisz się" class="btn btn-outline-danger button m-5" role="button">
+                <button type="submit" value="Zapisz się" id="submit" class="btn btn-outline-danger button m-5"
+                    role="button" disabled>Zapisz się</button>
             </div>
     </form>
-    <a href="#main" class="skip-link button">Skip to main</a>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-    <main id="main">Main</main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>
