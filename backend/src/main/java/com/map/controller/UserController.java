@@ -9,13 +9,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController("api/users")
 @AllArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    @PostMapping("/new")
+    @PostMapping("/create")
     ResponseEntity<User> addUser(@RequestBody UserDto userDto) {
         return ResponseEntity.accepted().body(userService.createUser(userDto));
     }
