@@ -5,11 +5,11 @@ import com.map.model.User;
 import com.map.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
-@RestController("api/users")
+@RestController
+@RequestMapping(value = "/api/users")
 @AllArgsConstructor
 public class UserController {
 
