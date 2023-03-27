@@ -15,11 +15,11 @@ import java.sql.Statement;
 public class UserRepository {
 
     private static final Logger log = Logger.getLogger(UserRepository.class);
-    private static final String ADD_QUERY = "insert into map.user (nickname, city, country, zipCode) values (?, ?, ?, ?)";
     private final DatabaseConnection databaseConnection;
 
     public User addUser(User user) {
         try {
+            String ADD_QUERY = "insert into map.user (nickname, city, country, zipCode) values (?, ?, ?, ?)";
             PreparedStatement ps = databaseConnection.getConnection().prepareStatement(ADD_QUERY, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getNickname());
             ps.setString(2, user.getCity());
@@ -29,7 +29,7 @@ public class UserRepository {
             ps.close();
             log.info("User has been added correctly.");
         } catch (SQLException e) {
-            log.info("Something went wrong." + e.getMessage());
+            log.info("Error while creating user:" + e.getMessage());
         }
         return user;
     }

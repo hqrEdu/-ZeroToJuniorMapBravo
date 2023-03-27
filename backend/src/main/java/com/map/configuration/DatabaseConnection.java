@@ -19,7 +19,7 @@ public class DatabaseConnection {
             conn = DriverManager.getConnection(URL, USER, PASSWORD);
             log.info("Connected to the mapa-bravo database successfully");
         } catch (SQLException e) {
-            log.info(e.getMessage());
+            log.info("Error while connecting to the database:" + e.getMessage());
         }
         return conn;
     }
