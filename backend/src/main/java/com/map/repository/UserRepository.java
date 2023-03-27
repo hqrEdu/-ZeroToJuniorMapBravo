@@ -3,6 +3,7 @@ package com.map.repository;
 import com.map.configuration.DatabaseConnection;
 import com.map.model.User;
 import lombok.AllArgsConstructor;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
 import java.sql.PreparedStatement;
@@ -13,6 +14,7 @@ import java.sql.Statement;
 @AllArgsConstructor
 public class UserRepository {
 
+    private static final Logger log = Logger.getLogger(UserRepository.class);
     private static final String ADD_QUERY = "insert into map.user (nickname, city, country, zipCode) values (?, ?, ?, ?)";
     private final DatabaseConnection databaseConnection;
 
@@ -25,9 +27,9 @@ public class UserRepository {
             ps.setString(4, user.getZipCode());
             ps.executeUpdate();
             ps.close();
-            System.out.println("User has been added correctly.");
+            log.info("User has been added correctly.");
         } catch (SQLException e) {
-            System.out.println("Something went wrong." + e.getMessage());
+            log.info("Something went wrong." + e.getMessage());
         }
         return user;
     }
