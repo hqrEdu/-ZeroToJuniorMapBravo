@@ -1,9 +1,13 @@
 .navbar {
-    background-color: #ccff33;
+  background-color: #ccff33;
 }
-.step_1, .step_2 {
-    font-weight: bold;
+.step_1,
+.step_2 {
+  font-weight: bold;
 }
 .button {
-    padding: 10px 180px 10px
+  padding: 10px 180px 10px;
+}
+.col-lg-4.error {
+  color: red;
 }
