@@ -1,4 +1,6 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import com.map.model.User;
 import org.junit.jupiter.api.Test;
 
 
@@ -7,7 +9,7 @@ public class UserTest {
     String testCity = "Paniska";
     String testZipCode = "00-949";
     String testCountry = "Poland";
-    private final User testModel = new User(testName, testCity, testZipCode, testCountry);
+    private final User testModel = new User(1, testName, testCity, testZipCode, testCountry);
 
     @Test
     public void testNick(){
