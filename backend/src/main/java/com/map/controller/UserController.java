@@ -5,10 +5,9 @@ import com.map.model.User;
 import com.map.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/users")
@@ -20,5 +19,10 @@ public class UserController {
     @PostMapping
     ResponseEntity<User> addUser(@RequestBody UserDto userDto) {
         return ResponseEntity.accepted().body(userService.createUser(userDto));
+    }
+
+    @GetMapping
+    ResponseEntity<List<User>> getUsers() {
+        return ResponseEntity.ok(userService.getUsers());
     }
 }
