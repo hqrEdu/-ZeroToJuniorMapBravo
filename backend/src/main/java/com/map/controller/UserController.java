@@ -25,4 +25,10 @@ public class UserController {
     ResponseEntity<List<User>> getUsers() {
         return ResponseEntity.ok(userService.getUsers());
     }
+
+    @DeleteMapping("/{userNickname}")
+    ResponseEntity<User> deleteUser(@PathVariable String userNickname) {
+        userService.deleteUser(userNickname);
+        return ResponseEntity.noContent().build();
+    }
 }
