@@ -1,5 +1,6 @@
 package com.map.repository;
 
+import com.map.exception.UserAlreadyExistException;
 import com.map.model.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,7 @@ public class UserRepository {
         try {
             String query = "insert into map.user (nickname, city, country, zipCode) values (?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            checkIfUserExists(user.getNickname());
             ps.setString(1, user.getNickname());
             ps.setString(2, user.getCity());
             ps.setString(3, user.getCountry());
@@ -58,9 +60,54 @@ public class UserRepository {
                 String zipCode = rs.getString("zipCode");
                 users.add(new User(id, nickname, city, zipCode, country));
             }
+            rs.close();
+            statement.close();
         } catch (SQLException e) {
             LOG.info("Error while fetching users:" + e.getMessage());
         }
         return users;
+    }
+
+    public User getUserByNickname(String userNickname) {
+            User user = new User();
+        try {
+            PreparedStatement ps = connection.prepareStatement("select * from map.user where nickname=?");
+            checkIfUserExists(user.getNickname());
+            ps.setString(1, userNickname);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                user.setNickname(rs.getString("nickname"));
+                user.setCity(rs.getString("city"));
+                user.setCountry(rs.getString("country"));
+                user.setZipCode(rs.getString("zipCode"));
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    private void checkIfUserExists(String userNickname) {
+        try {
+            String query = "select nickname from map.user";
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                String nickname = rs.getString("nickname");
+                if (nickname.equals(userNickname)) {
+                    throw new UserAlreadyExistException(userNickname);
+                }
+            }
+            rs.close();
+            statement.close();
+        } catch (SQLException e) {
+            LOG.info("Error while checking users:" + e.getMessage());
+        }
+    }
+
+    public Connection getConnection() {
+        return connection;
     }
 }
