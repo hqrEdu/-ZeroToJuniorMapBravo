@@ -71,7 +71,7 @@ class UserServiceTest {
         when(userService.createUser(userDto)).thenReturn(user);
         when(userRepository.getUserByNickname("nickname")).thenReturn(user);
         when(userService.createUser(userDto2)).thenThrow(UserAlreadyExistException.class);
-        assertThrows(UserAlreadyExistException.class, () -> userService.createUser(userDto2), String.format("User with nickname exist. {nickname=%s}", userDto2.getNickname()));
+        assertThrows(UserAlreadyExistException.class, () -> userService.createUser(userDto2), String.format("User with nickname exists. {nickname=%s}", userDto2.getNickname()));
     }
 
     @Test
