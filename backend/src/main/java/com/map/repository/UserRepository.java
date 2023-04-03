@@ -71,7 +71,7 @@ public class UserRepository {
     public User getUserByNickname(String userNickname) {
             User user = new User();
         try {
-            PreparedStatement ps = connection.prepareStatement("select * from map.user where nickname=?");
+            PreparedStatement ps = connection.prepareStatement("select nickname from map.user where nickname=?");
             checkIfUserExists(user.getNickname());
             ps.setString(1, userNickname);
             ResultSet rs = ps.executeQuery();
