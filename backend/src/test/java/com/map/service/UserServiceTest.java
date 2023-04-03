@@ -12,21 +12,18 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @ContextConfiguration(classes = {UserService.class})
 @ExtendWith(SpringExtension.class)
 class UserServiceTest {
-
-    String url = "url";
-    String password = "password";
-    String username = "username";
-    UserRepository userRepositoryConnection = new UserRepository(url, username, password);
 
     @Autowired
     private UserService userService;
@@ -36,7 +33,7 @@ class UserServiceTest {
 
     @BeforeEach
     void init() {
-        when(userRepository.getConnection()).thenReturn(userRepositoryConnection.getConnection());
+        when(userRepository.getConnection()).thenReturn(mock(Connection.class));
     }
 
     @Test
