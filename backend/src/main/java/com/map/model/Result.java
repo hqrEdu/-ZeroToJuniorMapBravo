@@ -8,6 +8,5 @@ public class Result {
 
     @JsonProperty("formatted_address")
     private String address;
-    @JsonProperty("geometry")
     private Geometry geometry;
 }
