@@ -39,11 +39,19 @@ button.btn.btn-lg{
     --bs-btn-bg:#FCA310;
 }
 
+@media (max-width: 450px){
+    button.btn.btn-lg{
+        max-width: 100%;
+        font-size: 0.5rem;
+    }
+}
+
 button.btn.log-in.btn-lg {
     --bs-btn-bg:#FCA310;
     position: relative;
     top: 50%;
     margin-left: 5%;
+
 }
 
 button.btn.log-in.btn-lg:hover {
@@ -104,6 +112,16 @@ main {
     padding: 5%;
 }
 
+@media (max-width: 1100px){
+    .container-in-second-cont {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+    }
+}
+
 .card{
     margin: 50px 100px 0 100px;
 }
@@ -119,19 +137,19 @@ img.card-img-top{
 /*Footer*/
 #footer {
     margin: 50px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer-icon{
-    position: relative;
-    left: 45%;
     color: grey;
-    margin-right: 20px;
+    padding-right: 10px;
 }
 .footer-signature {
-    text-align: center;
     color: grey;
-    margin-right: 20px;
-    margin-top: 20px;
+    text-align: center;
 }
 
 
