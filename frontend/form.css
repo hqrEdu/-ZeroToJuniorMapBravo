@@ -1,13 +1,57 @@
-.navbar {
-  background-color: #ccff33;
+nav.navbar.navbar-expand-lg {
+  height: 100px;
+  width: 100%;
+  z-index: 10;
 }
-.step_1,
-.step_2 {
-  font-weight: bold;
+
+.navbar,
+.navbar-brand {
+  background-color: #14223d;
+  font-family: "Roboto Slab", serif;
+
+  font-size: 1.5vh;
 }
-.button {
-  padding: 10px 180px 10px;
+
+a.navbar-brand,
+.link-zerotojunior {
+  color: white;
 }
-.col-lg-4.error {
+
+a.nav-link.active {
+  --bs-navbar-active-color: white;
+}
+
+.link-zerotojunior:hover {
+  color: #fca310;
+}
+
+a.nav-link.active:hover,
+button.btn.btn-lg:hover,
+a.btn-link:hover {
+  color: #fca310;
+  text-decoration: underline wavy red;
+}
+
+nav.navbar {
+  --bs-navbar-color: white;
+}
+.btn-link {
+  background-color: #fca310;
+  border-radius: 10px;
+  padding: 5px 30px;
+  text-decoration: none;
+  color: white;
+  font-size: 2vh;
+}
+a.btn-link:link {
+  text-decoration: none;
+}
+a.btn-link:hover {
+  color: #fca310;
+  background-color: #14223d;
+}
+a.rodo {
+  text-decoration: none;
   color: red;
+  font-weight: bold;
 }
