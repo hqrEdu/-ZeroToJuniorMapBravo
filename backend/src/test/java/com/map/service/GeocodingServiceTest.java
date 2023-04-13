@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @ContextConfiguration(classes = {GeocodingService.class})
 @ExtendWith(SpringExtension.class)
@@ -16,8 +17,14 @@ class GeocodingServiceTest {
     private GeocodingService geocodingService;
 
     @Test
-    void testBuildUri() {
-        assertEquals("https://maps.googleapis.com/maps/api/geocode/json?key=${geocoding.api.key}&address=Warszawa",
+    void shouldReturnCorrectUri() {
+        assertEquals("${geocoding.api.scheme}" + "://" + "${geocoding.api.host}" + "/" + "${geocoding.api.path}" + "?key=" + "${geocoding.api.key}&address=Warszawa",
                 geocodingService.buildUri("Warszawa"));
+    }
+
+    @Test
+    void shouldReturnIncorrectUri() {
+        assertNotEquals("${geocoding.api.scheme}" + "${geocoding.api.host}" + "${geocoding.api.path}" + "?key=" + "${geocoding.api.key}&address=Warszawa",
+                geocodingService.buildUri("Kielce"));
     }
 }
