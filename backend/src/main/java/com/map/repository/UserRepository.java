@@ -30,13 +30,15 @@ public class UserRepository {
 
     public User addUser(User user) {
         try {
-            String query = "insert into map.user (nickname, city, country, zipCode) values (?, ?, ?, ?)";
+            String query = "insert into map.user (nickname, city, country, zipCode, latitude, longitude) values (?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             checkIfUserExists(user.getNickname());
             ps.setString(1, user.getNickname());
             ps.setString(2, user.getCity());
             ps.setString(3, user.getCountry());
             ps.setString(4, user.getZipCode());
+            ps.setFloat(5, user.getLatitude());
+            ps.setFloat(6, user.getLongitude());
             ps.executeUpdate();
             ps.close();
             LOG.info("User [{}] has been added correctly.", user.getNickname());
@@ -58,7 +60,9 @@ public class UserRepository {
                 String city = rs.getString("city");
                 String country = rs.getString("country");
                 String zipCode = rs.getString("zipCode");
-                users.add(new User(id, nickname, city, zipCode, country));
+                Float latitude = rs.getFloat("latitude");
+                Float longitude = rs.getFloat("longitude");
+                users.add(new User(id, nickname, city, zipCode, country, latitude, longitude));
             }
             rs.close();
             statement.close();
@@ -80,6 +84,8 @@ public class UserRepository {
                 user.setCity(rs.getString("city"));
                 user.setCountry(rs.getString("country"));
                 user.setZipCode(rs.getString("zipCode"));
+                user.setLatitude(rs.getFloat("latitude"));
+                user.setLongitude(rs.getFloat("longitude"));
             }
             rs.close();
             ps.close();
