@@ -51,7 +51,7 @@ public class UserRepository {
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         try {
-            String query = "select id, nickname, city, country, zipcode from map.user";
+            String query = "select id, nickname, city, country, zipcode, latitude, longitude from map.user";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
@@ -60,8 +60,8 @@ public class UserRepository {
                 String city = rs.getString("city");
                 String country = rs.getString("country");
                 String zipCode = rs.getString("zipCode");
-                Float latitude = rs.getFloat("latitude");
-                Float longitude = rs.getFloat("longitude");
+                float latitude = rs.getFloat("latitude");
+                float longitude = rs.getFloat("longitude");
                 users.add(new User(id, nickname, city, zipCode, country, latitude, longitude));
             }
             rs.close();
