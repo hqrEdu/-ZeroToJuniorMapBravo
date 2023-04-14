@@ -20,6 +20,8 @@ public class UserService {
                 .zipCode(userDto.getZipCode())
                 .city(userDto.getCity())
                 .country(userDto.getCountry())
+                .latitude(userDto.getLatitude())
+                .longitude(userDto.getLongitude())
                 .build();
         return userRepository.addUser(user);
     }

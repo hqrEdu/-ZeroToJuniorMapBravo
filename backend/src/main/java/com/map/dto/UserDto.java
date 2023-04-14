@@ -14,4 +14,8 @@ public class UserDto {
     private String zipCode;
     @NotNull
     private String country;
+    @NotNull
+    private float latitude;
+    @NotNull
+    private float longitude;
 }
