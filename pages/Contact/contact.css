@@ -1,5 +1,3 @@
-/*HEADER SECTION*/
-/*Navbar*/
 nav.navbar.navbar-expand-lg {
   height: 100px;
   width: 100%;
@@ -163,4 +161,35 @@ img.card-img-top {
 }
 a.btn-link:link {
   text-decoration: none;
+}
+.image {
+  background-image: url("/pages/Contact/contact-us.jpg");
+  background-size: 100% 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  padding: 20% 0;
+}
+
+.btn-sm {
+  display: grid;
+  align-self: center;
+}
+
+.slide-in-left {
+  animation-name: slide-in-left;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  visibility: visible;
+  font-size: 0.8em;
+  border-radius: 4px;
+  border: none;
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
 }
