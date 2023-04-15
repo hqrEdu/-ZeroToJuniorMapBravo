@@ -73,9 +73,9 @@ class UserServiceTest {
 
     @Test
     void shouldCorrectlyGetAllUsers() {
-        User user = new User(1,"nickname", "city", "zipCode", "country");
-        User user1 = new User(2, "nickname2", "city", "zipCode", "country");
-        User user2 = new User(3, "nickname3", "city", "zipCode", "country");
+        User user = new User(1,"nickname", "city", "zipCode", "country",1, 1);
+        User user1 = new User(2, "nickname2", "city", "zipCode", "country",1, 1);
+        User user2 = new User(3, "nickname3", "city", "zipCode", "country",1, 1);
         List<User> users = new ArrayList<>();
         users.add(user);
         users.add(user1);

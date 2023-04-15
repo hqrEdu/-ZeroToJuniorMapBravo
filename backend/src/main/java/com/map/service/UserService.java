@@ -13,6 +13,7 @@ import java.util.List;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final GeocodingService geocodingService;
 
     public User createUser(UserDto userDto) {
         User user = User.builder()
@@ -20,8 +21,8 @@ public class UserService {
                 .zipCode(userDto.getZipCode())
                 .city(userDto.getCity())
                 .country(userDto.getCountry())
-                .latitude(userDto.getLatitude())
-                .longitude(userDto.getLongitude())
+                .latitude(geocodingService.getLatitude(userDto.getCountry() + userDto.getCity() + userDto.getZipCode()))
+                .longitude(geocodingService.getLongitude(userDto.getCountry() + userDto.getCity() + userDto.getZipCode()))
                 .build();
         return userRepository.addUser(user);
     }
