@@ -1,5 +1,7 @@
 package com.map.service;
 
+import com.map.exception.LatitudeException;
+import com.map.exception.LongitudeException;
 import com.map.model.GeocodingResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,12 +28,20 @@ public class GeocodingService {
 
     public Float getLatitude(String address) {
         GeocodingResponse result = getJson(address);
-        return (result.getResult().get(0).getGeometry().getLocation().getLat());
+        if (result != null) {
+            return result.getResult().get(0).getGeometry().getLocation().getLat();
+        } else {
+            throw new LatitudeException(address);
+        }
     }
 
     public Float getLongitude(String address) {
         GeocodingResponse result = getJson(address);
-        return (result.getResult().get(0).getGeometry().getLocation().getLng());
+        if (result != null) {
+            return (result.getResult().get(0).getGeometry().getLocation().getLng());
+        } else {
+            throw new LongitudeException(address);
+        }
     }
 
     private GeocodingResponse getJson(String address) {

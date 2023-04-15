@@ -21,10 +21,14 @@ public class UserService {
                 .zipCode(userDto.getZipCode())
                 .city(userDto.getCity())
                 .country(userDto.getCountry())
-                .latitude(geocodingService.getLatitude(userDto.getCountry() + userDto.getCity() + userDto.getZipCode()))
-                .longitude(geocodingService.getLongitude(userDto.getCountry() + userDto.getCity() + userDto.getZipCode()))
+                .latitude(geocodingService.getLatitude(getAddressForUser(userDto)))
+                .longitude(geocodingService.getLongitude(getAddressForUser(userDto)))
                 .build();
         return userRepository.addUser(user);
+    }
+
+    private String getAddressForUser(UserDto userDto) {
+        return userDto.getCountry() + userDto.getCity() + userDto.getZipCode();
     }
 
     public List<User> getUsers() {
