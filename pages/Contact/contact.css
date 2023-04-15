@@ -85,5 +85,5 @@ a.btn-link:link {
 }
 
 .contact-us:is(:hover, :focus) {
-  transform: translateY(-2px);
+  transform: translateY(-5px);
 }
