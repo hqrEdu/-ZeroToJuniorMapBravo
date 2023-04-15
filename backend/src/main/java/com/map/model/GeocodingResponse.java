@@ -9,5 +9,5 @@ import java.util.List;
 public class GeocodingResponse {
 
     @JsonProperty("results")
-    private List<Result> result;
+    private List<Result> results;
 }

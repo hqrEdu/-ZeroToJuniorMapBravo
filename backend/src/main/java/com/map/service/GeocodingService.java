@@ -29,7 +29,7 @@ public class GeocodingService {
     public Float getLatitude(String address) {
         GeocodingResponse result = getJson(address);
         if (result != null) {
-            return result.getResult().get(0).getGeometry().getLocation().getLat();
+            return result.getResults().get(0).getGeometry().getLocation().getLat();
         } else {
             throw new LatitudeException(address);
         }
@@ -38,7 +38,7 @@ public class GeocodingService {
     public Float getLongitude(String address) {
         GeocodingResponse result = getJson(address);
         if (result != null) {
-            return (result.getResult().get(0).getGeometry().getLocation().getLng());
+            return (result.getResults().get(0).getGeometry().getLocation().getLng());
         } else {
             throw new LongitudeException(address);
         }
