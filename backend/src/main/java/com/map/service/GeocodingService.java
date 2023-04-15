@@ -1,7 +1,5 @@
 package com.map.service;
 
-import com.map.exception.LatitudeException;
-import com.map.exception.LongitudeException;
 import com.map.model.GeocodingResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +12,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 public class GeocodingService {
+
+    private static final Logger LOG = LoggerFactory.getLogger(GeocodingService.class);
 
     @Value("${geocoding.api.key}")
     private String apiKey;
@@ -29,8 +29,9 @@ public class GeocodingService {
         if (result != null) {
             return result.getResults().get(0).getGeometry().getLocation().getLat();
         } else {
-            throw new LatitudeException(address);
+            LOG.info("Error while getting latitude.");
         }
+        return null;
     }
 
     public Float getLongitude(String address) {
@@ -38,8 +39,9 @@ public class GeocodingService {
         if (result != null) {
             return (result.getResults().get(0).getGeometry().getLocation().getLng());
         } else {
-            throw new LongitudeException(address);
+            LOG.info("Error while getting longitude");
         }
+        return null;
     }
 
     private GeocodingResponse getJson(String address) {

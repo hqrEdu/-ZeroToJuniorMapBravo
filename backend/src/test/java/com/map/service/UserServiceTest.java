@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@ContextConfiguration(classes = {UserService.class})
+@ContextConfiguration(classes = UserService.class)
 @ExtendWith(SpringExtension.class)
 class UserServiceTest {
 
