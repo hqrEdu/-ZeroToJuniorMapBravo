@@ -164,3 +164,7 @@ img.card-img-top {
 a.btn-link:link {
   text-decoration: none;
 }
+.grid {
+  display: grid;
+  justify-items: center;
+}
