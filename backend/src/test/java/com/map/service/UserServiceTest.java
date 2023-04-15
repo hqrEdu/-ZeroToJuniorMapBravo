@@ -30,6 +30,8 @@ class UserServiceTest {
 
     @MockBean
     private UserRepository userRepository;
+    @MockBean
+    private GeocodingService geocodingService;
 
     @BeforeEach
     void init() {
@@ -43,6 +45,8 @@ class UserServiceTest {
         user.setCity("city");
         user.setCountry("country");
         user.setZipCode("zipCode");
+        user.setLatitude(geocodingService.getLatitude(user.getCountry() + user.getCity() + user.getZipCode()));
+        user.setLatitude(geocodingService.getLongitude(user.getCountry() + user.getCity() + user.getZipCode()));
 
         UserDto userDto = new UserDto("nickname", "city", "zipCode", "country");
 
@@ -61,6 +65,8 @@ class UserServiceTest {
         user.setCity("city");
         user.setCountry("country");
         user.setZipCode("zipCode");
+        user.setLongitude(geocodingService.getLatitude(user.getCountry() + user.getCity() + user.getZipCode()));
+        user.setLatitude(geocodingService.getLongitude(user.getCountry() + user.getCity() + user.getZipCode()));
 
         UserDto userDto = new UserDto("nickname", "city", "zipCode", "country");
         UserDto userDto2 = new UserDto("nickname", "city", "zipCode", "country");

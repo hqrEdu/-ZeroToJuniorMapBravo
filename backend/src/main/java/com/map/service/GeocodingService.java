@@ -15,8 +15,6 @@ import org.springframework.web.util.UriComponentsBuilder;
 @Service
 public class GeocodingService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(GeocodingService.class);
-
     @Value("${geocoding.api.key}")
     private String apiKey;
     @Value("${geocoding.api.scheme}")
