@@ -1,5 +1,6 @@
 package com.map.service;
 
+import com.map.configuration.DatabaseConnection;
 import com.map.dto.UserDto;
 import com.map.exception.UserAlreadyExistException;
 import com.map.model.User;
@@ -21,19 +22,22 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-@ContextConfiguration(classes = {UserService.class})
+@ContextConfiguration(classes = UserService.class)
 @ExtendWith(SpringExtension.class)
 class UserServiceTest {
 
     @Autowired
     private UserService userService;
-
     @MockBean
     private UserRepository userRepository;
+    @MockBean
+    private DatabaseConnection databaseConnection;
+    @MockBean
+    private GeocodingService geocodingService;
 
     @BeforeEach
     void init() {
-        when(userRepository.getConnection()).thenReturn(mock(Connection.class));
+        when(databaseConnection.getConnection()).thenReturn(mock(Connection.class));
     }
 
     @Test
@@ -43,6 +47,8 @@ class UserServiceTest {
         user.setCity("city");
         user.setCountry("country");
         user.setZipCode("zipCode");
+        user.setLatitude(geocodingService.getLatitude(user.getCountry() + user.getCity() + user.getZipCode()));
+        user.setLatitude(geocodingService.getLongitude(user.getCountry() + user.getCity() + user.getZipCode()));
 
         UserDto userDto = new UserDto("nickname", "city", "zipCode", "country");
 
@@ -61,6 +67,8 @@ class UserServiceTest {
         user.setCity("city");
         user.setCountry("country");
         user.setZipCode("zipCode");
+        user.setLongitude(geocodingService.getLatitude(user.getCountry() + user.getCity() + user.getZipCode()));
+        user.setLatitude(geocodingService.getLongitude(user.getCountry() + user.getCity() + user.getZipCode()));
 
         UserDto userDto = new UserDto("nickname", "city", "zipCode", "country");
         UserDto userDto2 = new UserDto("nickname", "city", "zipCode", "country");
@@ -73,9 +81,9 @@ class UserServiceTest {
 
     @Test
     void shouldCorrectlyGetAllUsers() {
-        User user = new User(1,"nickname", "city", "zipCode", "country");
-        User user1 = new User(2, "nickname2", "city", "zipCode", "country");
-        User user2 = new User(3, "nickname3", "city", "zipCode", "country");
+        User user = new User(1,"nickname", "city", "zipCode", "country",1, 1);
+        User user1 = new User(2, "nickname2", "city", "zipCode", "country",1, 1);
+        User user2 = new User(3, "nickname3", "city", "zipCode", "country",1, 1);
         List<User> users = new ArrayList<>();
         users.add(user);
         users.add(user1);

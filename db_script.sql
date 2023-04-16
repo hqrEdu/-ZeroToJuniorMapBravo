@@ -12,6 +12,8 @@ COMMENT ON SCHEMA "map"
     city character varying NOT NULL,
     country character varying NOT NULL,
     zipCode character varying NOT NULL,
+    latitude float NOT NULL,
+    longitude float NOT NULL,
     CONSTRAINT user_pkey PRIMARY KEY (id)
 );
 

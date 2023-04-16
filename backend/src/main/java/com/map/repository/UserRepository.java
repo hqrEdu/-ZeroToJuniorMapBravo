@@ -1,42 +1,39 @@
 package com.map.repository;
 
+import com.map.configuration.DatabaseConnection;
 import com.map.exception.UserAlreadyExistException;
 import com.map.model.User;
+import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
+@AllArgsConstructor
 public class UserRepository {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserRepository.class);
-    private Connection connection;
 
-    public UserRepository(@Value("${spring.datasource.url}") String url,
-                          @Value("${spring.datasource.username}") String user,
-                          @Value("${spring.datasource.password}") String password) {
-        try {
-            connection = DriverManager.getConnection(url, user, password);
-            LOG.info("Connected to the mapa-bravo database successfully");
-        } catch (SQLException e) {
-            LOG.info("Error while connecting to the database:" + e.getMessage());
-        }
-    }
+    private final DatabaseConnection connection;
 
     public User addUser(User user) {
         try {
-            String query = "insert into map.user (nickname, city, country, zipCode) values (?, ?, ?, ?)";
-            PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            String query = "insert into map.user (nickname, city, country, zipCode, latitude, longitude) values (?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = connection.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             checkIfUserExists(user.getNickname());
             ps.setString(1, user.getNickname());
             ps.setString(2, user.getCity());
             ps.setString(3, user.getCountry());
             ps.setString(4, user.getZipCode());
+            ps.setFloat(5, user.getLatitude());
+            ps.setFloat(6, user.getLongitude());
             ps.executeUpdate();
             ps.close();
             LOG.info("User [{}] has been added correctly.", user.getNickname());
@@ -49,8 +46,8 @@ public class UserRepository {
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
         try {
-            String query = "select id, nickname, city, country, zipcode from map.user";
-            Statement statement = connection.createStatement();
+            String query = "select id, nickname, city, country, zipcode, latitude, longitude from map.user";
+            Statement statement = connection.getConnection().createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 Integer id = rs.getInt("id");
@@ -58,7 +55,9 @@ public class UserRepository {
                 String city = rs.getString("city");
                 String country = rs.getString("country");
                 String zipCode = rs.getString("zipCode");
-                users.add(new User(id, nickname, city, zipCode, country));
+                float latitude = rs.getFloat("latitude");
+                float longitude = rs.getFloat("longitude");
+                users.add(new User(id, nickname, city, zipCode, country, latitude, longitude));
             }
             rs.close();
             statement.close();
@@ -69,9 +68,9 @@ public class UserRepository {
     }
 
     public User getUserByNickname(String userNickname) {
-            User user = new User();
+        User user = new User();
         try {
-            PreparedStatement ps = connection.prepareStatement("select nickname from map.user where nickname=?");
+            PreparedStatement ps = connection.getConnection().prepareStatement("select nickname from map.user where nickname=?");
             checkIfUserExists(user.getNickname());
             ps.setString(1, userNickname);
             ResultSet rs = ps.executeQuery();
@@ -80,6 +79,8 @@ public class UserRepository {
                 user.setCity(rs.getString("city"));
                 user.setCountry(rs.getString("country"));
                 user.setZipCode(rs.getString("zipCode"));
+                user.setLatitude(rs.getFloat("latitude"));
+                user.setLongitude(rs.getFloat("longitude"));
             }
             rs.close();
             ps.close();
@@ -92,7 +93,7 @@ public class UserRepository {
     private void checkIfUserExists(String userNickname) {
         try {
             String query = "select nickname from map.user";
-            Statement statement = connection.createStatement();
+            Statement statement = connection.getConnection().createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()) {
                 String nickname = rs.getString("nickname");
@@ -105,9 +106,5 @@ public class UserRepository {
         } catch (SQLException e) {
             LOG.info("Error while checking users:" + e.getMessage());
         }
-    }
-
-    public Connection getConnection() {
-        return connection;
     }
 }

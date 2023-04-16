@@ -16,5 +16,7 @@ public class User {
     private String city;
     private String zipCode;
     private String country;
+    private float latitude;
+    private float longitude;
 
 }
