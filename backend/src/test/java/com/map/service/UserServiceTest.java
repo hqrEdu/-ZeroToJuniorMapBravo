@@ -1,5 +1,6 @@
 package com.map.service;
 
+import com.map.configuration.DatabaseConnection;
 import com.map.dto.UserDto;
 import com.map.exception.UserAlreadyExistException;
 import com.map.model.User;
@@ -27,15 +28,16 @@ class UserServiceTest {
 
     @Autowired
     private UserService userService;
-
     @MockBean
     private UserRepository userRepository;
+    @MockBean
+    private DatabaseConnection databaseConnection;
     @MockBean
     private GeocodingService geocodingService;
 
     @BeforeEach
     void init() {
-        when(userRepository.getConnection()).thenReturn(mock(Connection.class));
+        when(databaseConnection.getConnection()).thenReturn(mock(Connection.class));
     }
 
     @Test
