@@ -168,3 +168,8 @@ a.btn-link:link {
   display: grid;
   justify-items: center;
 }
+#map {
+  height: 40vh;
+  width: 50vw;
+  margin: auto;
+}
