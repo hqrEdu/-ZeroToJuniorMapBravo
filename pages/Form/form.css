@@ -1,3 +1,7 @@
+body{
+  font-family: "Roboto Slab", serif;
+}
+
 nav.navbar.navbar-expand-lg {
   height: 100px;
   width: 100%;
@@ -41,6 +45,12 @@ nav.navbar {
   color: white;
   font-size: 2vh;
 }
+
+.btn-link:hover {
+  color: #fca310;
+  background-color: #14223d;
+}
+
 a.btn-link:link {
   text-decoration: none;
 }
