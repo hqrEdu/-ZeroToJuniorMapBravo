@@ -1,6 +1,28 @@
+// Receiving users nickname, latitude and longitude from sql database
+fetch("ADRES URL RESTAPI DLA JSON")
+    .then(response => response.json())
+    .then(users => {
+      createUsersPosition(users);
+    })
+
+// Creating set of data - nickname, lattitude, longitude
+function createUsersPosition(users) {
+  users.forEach(user => {
+    const position = new google.maps.LatLng(user.latitude, user.longitude);
+    createUsersMaker(position, user);
+  });
+}
+
+function createUsersMaker(position, user) {
+  const marker = new google.maps.Marker({
+    position: position,
+    map: map,
+    title: user.name
+  });
+}
+
 // Initialize and add the map
 let map;
-
 async function initMap() {
   // The location of Uluru
   const position = { lat: -25.344, lng: 131.031 };
@@ -15,13 +37,15 @@ async function initMap() {
     center: position,
     mapId: "DEMO_MAP_ID",
   });
+  createUsersMaker(users);
 
-  // The marker, positioned at Uluru
-  const marker = new AdvancedMarkerView({
-    map: map,
-    position: position,
-    title: "Uluru",
-  });
 }
 
 initMap();
+
+// The marker, positioned at Uluru
+// const marker = new AdvancedMarkerView({
+//   map: map,
+//   position: position,
+//   title: "Uluru",
+// });
