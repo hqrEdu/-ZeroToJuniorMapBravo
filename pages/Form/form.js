@@ -1,4 +1,4 @@
-const form = document.getElementById("form");
+const form = document.getElementById("user-form");
 const submitBtn = document.getElementById("submit");
 const fname = document.getElementById("fname");
 const nick = document.getElementById("nick");
@@ -75,3 +75,39 @@ form?.addEventListener("input", cityError);
 form?.addEventListener("input", zipError);
 form?.addEventListener("input", privacyError);
 form?.addEventListener("change", sendForm);
+
+// Receiving  data from user form
+form.addEventListener("submit", function(event){
+  event.preventDefault();
+  const formData = new FormData(form);
+  const data = {
+    fname: formData.get("fname"),
+    nickname: formData.get("nick"),
+    country: formData.get("country"),
+    city: formData.get("city"),
+    zipCode: formData.get("zip_code")
+  };
+  sendData(data);
+})
+// Send data to database
+function sendData(data){
+  fetch('http://localhost:8080/api/users', {
+    method: "POST",
+    headers:{
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+      .then(function(response){
+        if(!response.ok){
+          throw new Error("Błąd podczas wysyłania danych użytkownika");
+        }
+        return response.json();
+      })
+      .then(function(user){
+        console.log("Dodano użytkownika", user);
+      })
+      .catch(function(error){
+        console.error("Błąd podczas przesyłania danych użytkownika", error);
+      })
+}

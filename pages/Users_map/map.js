@@ -1,9 +1,13 @@
 // Receiving users nickname, latitude and longitude from sql database
-fetch("ADRES URL RESTAPI DLA JSON")
+fetch('/api/users')
     .then(response => response.json())
     .then(users => {
       createUsersPosition(users);
     })
+    .catch(error => {
+      console.error('Błąd podczas pobierania danych użytkowników:', error);
+    });
+
 
 // Creating set of data - nickname, lattitude, longitude
 function createUsersPosition(users) {
