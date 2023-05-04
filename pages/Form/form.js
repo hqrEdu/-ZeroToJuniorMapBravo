@@ -91,7 +91,7 @@ form.addEventListener("submit", function(event){
 })
 // Send data to database
 function sendData(data){
-  fetch('http://localhost:8080/api/users', {
+  fetch('http://z2j-bravo.hqr.at/users', {
     method: "POST",
     headers:{
       'Content-Type': 'application/json',
