@@ -1,12 +1,20 @@
 // Receiving users nickname, latitude and longitude from sql database
-fetch('/api/users')
-    .then(response => response.json())
-    .then(users => {
-      createUsersPosition(users);
-    })
-    .catch(error => {
-      console.error('Błąd podczas pobierania danych użytkowników:', error);
-    });
+
+function getUsers(){
+  fetch("http://z2j-bravo.hqr.at/api/users")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Błąd podczas pobierania danych użytkowników");
+        }
+        return response.json();
+      })
+      .then(users => {
+        createUsersPosition(users);
+      })
+      .catch(error => {
+        console.error('Błąd podczas pobierania danych użytkowników:', error);
+      });
+}
 
 
 // Creating set of data - nickname, lattitude, longitude
