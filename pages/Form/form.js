@@ -1,18 +1,11 @@
-const form = document.getElementById("user-form");
+const form = document.querySelector("form");
 const submitBtn = document.getElementById("submit");
-const fname = document.getElementById("fname");
 const nick = document.getElementById("nick");
 const country = document.getElementById("country");
 const city = document.getElementById("city");
 const zip_code = document.getElementById("zip_code");
 const privacy_law = document.getElementById("privacy_law");
 
-function nameError() {
-  if (fname.value === undefined || fname.value === "") {
-    fname.setAttribute("placeholder", "Pole nie może być puste. Wypełnij je.");
-    fname.style.border = "1px solid red";
-  }
-}
 function nickError() {
   if (nick.value === undefined || nick.value === "") {
     nick.setAttribute("placeholder", "Pole nie może być puste. Wypełnij je.");
@@ -43,10 +36,11 @@ function zipError() {
     zip_code.style.border = "1px solid red";
   }
 }
+
 function privacyError() {
-  if (privacy_law.value === undefined || privacy_law.value === "") {
+    if (!privacy_law.checked) {
     privacy_law.setAttribute(
-      "placeholder",
+      "checked",
       "Pole nie może być puste. Wypełnij je."
     );
     privacy_law.style.border = "1px solid red";
@@ -55,7 +49,6 @@ function privacyError() {
 
 function sendForm() {
   if (
-    fname?.value.trim() &&
     nick?.value.trim() &&
     country?.value.trim() &&
     city?.value.trim() &&
@@ -68,46 +61,49 @@ function sendForm() {
   }
 }
 
-form?.addEventListener("input", nameError);
 form?.addEventListener("input", nickError);
 form?.addEventListener("input", countryError);
 form?.addEventListener("input", cityError);
 form?.addEventListener("input", zipError);
-form?.addEventListener("input", privacyError);
+form?.addEventListener("change", privacyError);
 form?.addEventListener("change", sendForm);
 
 // Receiving  data from user form
-form.addEventListener("submit", function(event){
+submitBtn.addEventListener("click", function(event){
   event.preventDefault();
   const formData = new FormData(form);
   const data = {
-    fname: formData.get("fname"),
-    nickname: formData.get("nick"),
-    country: formData.get("country"),
-    city: formData.get("city"),
-    zipCode: formData.get("zip_code")
+      nickname: formData.get("nick"),
+      city: formData.get("city"),
+      zipCode: formData.get("zip_code"),
+      country: formData.get("country"),
   };
   sendData(data);
 })
 // Send data to database
-function sendData(data){
-  fetch('http://z2j-bravo.hqr.at/users', {
-    method: "POST",
-    headers:{
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
-      .then(function(response){
-        if(!response.ok){
-          throw new Error("Błąd podczas wysyłania danych użytkownika");
-        }
-        return response.json();
-      })
-      .then(function(user){
-        console.log("Dodano użytkownika", user);
-      })
-      .catch(function(error){
-        console.error("Błąd podczas przesyłania danych użytkownika", error);
-      })
+function sendData(data) {
+    console.log("Wysyłam zapytanie...", data);
+    fetch('http://z2j-bravo.hqr.at/api/users', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then(function (response) {
+            console.log("Odpowiedź od serwera:", response);
+            if (!response.ok) {
+                throw new Error("Błąd podczas wysyłania danych użytkownika");
+            }
+            return response.json();
+        })
+        .then(function (user) {
+            console.log("Dodano użytkownika", user);
+        })
+        .catch(function (error) {
+            console.error("Błąd podczas przesyłania danych użytkownika", error);
+        })
+        .catch(function (networkError) {
+            console.error("Błąd sieciowy", networkError);
+        });
 }
