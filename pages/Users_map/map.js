@@ -1,7 +1,7 @@
 // Receiving users nickname, latitude and longitude from sql database
 
 function getUsers(){
-  fetch("http://z2j-bravo.hqr.at/api/users")
+  fetch("https://z2j-bravo.hqr.at/api/users")
       .then((response) => {
         if (!response.ok) {
           throw new Error("Błąd podczas pobierania danych użytkowników");
