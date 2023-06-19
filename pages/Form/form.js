@@ -83,7 +83,7 @@ submitBtn.addEventListener("click", function(event){
 // Send data to database
 function sendData(data) {
     console.log("Wysyłam zapytanie...", data);
-    fetch('http://z2j-bravo.hqr.at/api/users', {
+    fetch('https://z2j-bravo.hqr.at/api/users', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json',
